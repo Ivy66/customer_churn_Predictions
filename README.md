@@ -1,4 +1,4 @@
-**Predicting Customer Churn in a subscription Business**
+<h1>Predicting Customer Churn in a subscription Business</h1>
 
 This project contains a predictive model to identify customers who are likely to churn out of a subscription based business. This model is built in python and also utilizes various data science techniques such as data cleaning, explotaroy data analysis and machine learning 
 
