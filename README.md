@@ -11,7 +11,7 @@ The datasetcan be found here: https://www.kaggle.com/datasets/blastchar/telco-cu
 
 The first step in building tjis predictive model was to clean the dataset. This involved removing missing values, removing unnecessary columns etc.
 
-**Explatory Data Analysis **
+**Explatory Data Analysis**
 
 After cleaning the dataset, i performed explatory data analysis (EDA)) to gain a better understanding of the relationship between the variables and the dataset. I used various visualization techniques such as pie charts and  Histograms to explore the dataset
 
