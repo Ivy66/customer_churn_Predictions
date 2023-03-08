@@ -50,7 +50,7 @@ plot_layout = go.Layout(dict(title="Customer Churn ",
                              plot_bgcolor="rgb(189, 167, 242)",
                              paper_bgcolor="rgb(189, 167, 242)", ))
 fig = go.Figure(data=plot_data, layout=plot_layout)
-fig.show()
+fig.show
 # visualize the churn rate for male and female
 plot_by_gender = df.groupby('Gender').Churn.mean().reset_index()
 plot_data = [go.Bar(x=plot_by_gender['Gender'],
@@ -63,6 +63,24 @@ plot_layout = go.Layout(
     xaxis={"type": "category"},
     yaxis={"title": "churn Rate"},
     title='churn Rate by Gender',
+    plot_bgcolor='rgb(189, 167, 242)',
+    paper_bgcolor="rgb(189, 167, 242)",
+)
+fig = go.Figure(data=plot_data, layout=plot_layout)
+fig.show()
+
+# visualize the churn rate by internet Service
+plot_by_internet_service = df.groupby('Internet Service').mean().reset_index()
+plot_data = [go.Bar(x=plot_by_internet_service['Internet Service'],
+                    y=plot_by_internet_service['Churn'],
+                    width=[0.4, 0.4, 0.4],
+                    marker=dict(color=['red', 'yellow', 'magenta'])
+                    )
+             ]
+plot_layout = go.Layout(
+    xaxis={"type": "category"},
+    yaxis={"title": "churn Rate"},
+    title='churn Rate by Internet Service',
     plot_bgcolor='rgb(189, 167, 242)',
     paper_bgcolor="rgb(189, 167, 242)",
 )
