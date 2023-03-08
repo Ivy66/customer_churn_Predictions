@@ -32,11 +32,11 @@ df["Churn"].value_counts().values
 plot_by_Churn_Labels = df["Churn"].value_counts().keys().tolist()
 plot_by_Churn_values = df["Churn"].value_counts().values.tolist()
 
-
 # visualize the code
 plot_by_Churn_Labels = df["Churn"].value_counts().keys().tolist()
 plot_by_Churn_values = df["Churn"].value_counts().values.tolist()
 
+# visualize total customer Churn
 plot_data = [go.Pie(labels=plot_by_Churn_Labels,
                     values=plot_by_Churn_values,
                     marker=dict(colors=['Magenta', 'Grey'],
@@ -47,8 +47,25 @@ plot_data = [go.Pie(labels=plot_by_Churn_Labels,
                     hole=.6)
              ]
 plot_layout = go.Layout(dict(title="Customer Churn ",
-                             plot_bgcolor="rgb(243, 243, 243)",
-                             paper_bgcolor="rgb(243, 243, 243)", ))
+                             plot_bgcolor="rgb(189, 167, 242)",
+                             paper_bgcolor="rgb(189, 167, 242)", ))
+fig = go.Figure(data=plot_data, layout=plot_layout)
+fig.show()
+# visualize the churn rate for male and female
+plot_by_gender = df.groupby('Gender').Churn.mean().reset_index()
+plot_data = [go.Bar(x=plot_by_gender['Gender'],
+                    y=plot_by_gender['Churn'],
+                    width=[0.4, 0.4],
+                    marker=dict(color=['red', 'yellow'])
+                    )
+             ]
+plot_layout = go.Layout(
+    xaxis={"type": "category"},
+    yaxis={"title": "churn Rate"},
+    title='churn Rate by Gender',
+    plot_bgcolor='rgb(189, 167, 242)',
+    paper_bgcolor="rgb(189, 167, 242)",
+)
 fig = go.Figure(data=plot_data, layout=plot_layout)
 fig.show()
 
