@@ -104,6 +104,23 @@ plot_layout = go.Layout(
 )
 fig = go.Figure(data=plot_data, layout=plot_layout)
 fig.show()
+# Visualization by Tech Support
+plot_by_Tech_Support = df.groupby('Tech Support').mean().reset_index()
+plot_data = [go.Bar(x=plot_by_Tech_Support['Tech Support'],
+                    y=plot_by_Tech_Support['Churn'],
+                    width=[0.4, 0.4, 0.4],
+                    marker=dict(color=['teal', 'blue'])
+                    )
+             ]
+plot_layout = go.Layout(
+    xaxis={"type": "category"},
+    yaxis={"title": "churn Rate"},
+    title='churn Rate by Tech Support',
+    plot_bgcolor='rgb(189, 167, 242)',
+    paper_bgcolor="rgb(189, 167, 242)",
+)
+fig = go.Figure(data=plot_data, layout=plot_layout)
+fig.show()
 
 report = pandas_profiling.ProfileReport(df)
 report.to_file('report.html')
