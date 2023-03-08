@@ -121,6 +121,44 @@ plot_layout = go.Layout(
 )
 fig = go.Figure(data=plot_data, layout=plot_layout)
 fig.show()
+# visualization for churn rate my month duration
+plot_by_contract = df.groupby('Contract').mean().reset_index()
+plot_data = [go.Bar(x=plot_by_contract['Contract'],
+                    y=plot_by_contract['Churn'],
+                    width=[0.4, 0.4, 0.4],
+                    marker=dict(color=['blue', 'indigo', 'pink'])
+                    )
+             ]
+plot_layout = go.Layout(
+    xaxis={"type": "category"},
+    yaxis={"title": "churn Rate"},
+    title='churn Rate by contract',
+    plot_bgcolor='rgb(189, 167, 242)',
+    paper_bgcolor="rgb(189, 167, 242)",
+)
+fig = go.Figure(data=plot_data, layout=plot_layout)
+fig.show()
+# Visualize relation between tenure and churn rate
+plot_by_tenure = df.groupby('Tenure Months').Churn.mean().reset_index()
+plot_data = [go.Scatter(x=plot_by_tenure['Tenure Months'],
+                        y=plot_by_tenure['Churn'],
+                        mode='markers',
+                        name='Low',
+                        marker=dict(size=5,
+                                    line=dict(width=0.8),
+                                    color='magenta'
+                                    ),
+                        )
+             ]
+plot_layout = go.Layout(
+    yaxis={"title": "Churn Rate"},
+    xaxis={"title": "Tenure"},
+    title='Relation between Tenure and churn rate',
+    plot_bgcolor='rgb(189, 167, 242)',
+    paper_bgcolor="rgb(189, 167, 242)",
+)
+fig = go.Figure(data=plot_data, layout=plot_layout)
+fig.show()
 
 report = pandas_profiling.ProfileReport(df)
 report.to_file('report.html')
